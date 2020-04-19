@@ -19,7 +19,7 @@ namespace CSharp_Shell
     	
         public static void Main() 
         {
-            InitialiseDictionaries();
+            initialiseDictionaries();
             bool endApp = true;
             long number = 0;
             
@@ -38,7 +38,7 @@ namespace CSharp_Shell
                 try
                 {
                     number = Convert.ToInt64(numberInString);
-                    Console.WriteLine("In words: " + GetWordsEquivalent(number.ToString()));
+                    Console.WriteLine("In words: " + getWordsEquivalent(number.ToString()));
                 }
                 catch (FormatException e)
                 {
@@ -71,25 +71,25 @@ namespace CSharp_Shell
             Console.ForegroundColor = DEFAULT_COLOUR;
         }
         
-        public static string GetWordsEquivalent(string number)
+        private static string getWordsEquivalent(string number)
         {
         	StringBuilder result = new StringBuilder();
-            List<string> listNumberGroups = DivideNumberIntoGroups(number);
+            List<string> listNumberGroups = divideNumberIntoGroups(number);
             noOfGroups = listNumberGroups.Count;
             
             if (negativeNumber)
-            	result.Append("nagative ");
+            	result.Append("negative ");
             	
             for (int i = listNumberGroups.Count - 1; i >= 0; i--)
             {
-            	result.Append(ConvertGroupToWords(listNumberGroups[i]));
+            	result.Append(convertGroupToWords(listNumberGroups[i]));
             	noOfGroups--;
             }
             
             return result.ToString().Remove(result.Length - 1, 1);
         }
         
-        public static string ConvertGroupToWords(string numberGroup)
+        private static string convertGroupToWords(string numberGroup)
         {
             StringBuilder wordBuilder = new StringBuilder();
             
@@ -133,7 +133,7 @@ namespace CSharp_Shell
             return wordBuilder.ToString().Trim();
         }
         
-        public static List<string> DivideNumberIntoGroups(string number)
+        private static List<string> divideNumberIntoGroups(string number)
         {
             List<string> dividedNumber = new List<string>();
             StringBuilder groupBuilder = new StringBuilder();
@@ -153,7 +153,7 @@ namespace CSharp_Shell
             return dividedNumber;
         }
         
-        public static void InitialiseDictionaries()
+        private static void initialiseDictionaries()
         {
         	groupId = new Dictionary<int, string>();
          	groupId.Add(0, "");
